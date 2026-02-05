@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход | EGE Platform</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #bb86fc;
+            --border-radius: 12px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        h2 { font-weight: 300; margin-bottom: 30px; }
+
+        input {
+            width: 100%;
+            background: #2c2c2c;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            color: white;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input:focus { border-color: var(--accent-color); }
+
+        button {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { background-color: #d7b7fd; transform: scale(1.02); }
+
+        .footer-link {
+            margin-top: 20px;
+            display: block;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .footer-link:hover { color: var(--accent-color); }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Вход в систему</h2>
+        <form method="POST">
+            <input type="text" name="username" placeholder="Логин" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+        <a href="/register" class="footer-link">Нет аккаунта? Регистрация</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ-панель | EGE Platform</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #bb86fc;
+            --error-color: #cf6679;
+            --border-radius: 12px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1, h3 { font-weight: 300; letter-spacing: 1px; }
+        .card {
+            background-color: var(--surface-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            background: #2c2c2c;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            color: white;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        button:hover {
+            background-color: #d7b7fd;
+            transform: translateY(-2px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th { text-align: left; color: var(--accent-color); padding: 12px; border-bottom: 1px solid #333; }
+        td { padding: 12px; border-bottom: 1px solid #2c2c2c; font-size: 0.9em; }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Admin Panel</h1>
+            <a href="/" class="btn-logout">Выйти</a>
+        </div>
+
+        <div class="card">
+            <h3>Новое задание</h3>
+            <form method="POST">
+                <input type="number" name="number" placeholder="Номер (1-27)" required>
+                <textarea name="content" placeholder="Условие задачи..." rows="4" required></textarea>
+                <input type="text" name="answer" placeholder="Верный ответ" required>
+                <input type="text" name="hint" placeholder="Краткая справка">
+                <button type="submit">Сохранить задание</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Задания в базе</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Условие</th>
+                        <th>Ответ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for q in qs %}
+                    <tr>
+                        <td><strong>{{ q.number }}</strong></td>
+                        <td>{{ q.content[:40] }}...</td>
+                        <td>{{ q.answer }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

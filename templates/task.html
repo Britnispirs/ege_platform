@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание №{{ q.number }}</title>
+    <style>
+        :root {
+            --bg: #0f0f0f; --card: #1a1a1a; --accent: #bb86fc; --text: #e0e0e0;
+        }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding: 40px; display: flex; justify-content: center; }
+        .task-container { max-width: 700px; width: 100%; }
+        
+        .card { background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid #333; margin-bottom: 20px; }
+        .task-number { color: var(--accent); font-size: 0.9rem; margin-bottom: 10px; }
+        .content { font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; }
+
+        input { background: #222; border: 1px solid #444; padding: 12px; border-radius: 12px; color: #fff; width: 200px; outline: none; }
+        input:focus { border-color: var(--accent); }
+
+        /* Стили для справки */
+        .hint-btn { background: none; border: 1px dashed #555; color: #888; padding: 10px 20px; border-radius: 12px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .hint-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .hint-box { 
+            display: none; /* Скрыта по умолчанию */
+            background: #252525; border-left: 4px solid var(--accent); 
+            padding: 20px; margin-top: 15px; border-radius: 8px; 
+            font-size: 0.95rem; color: #ccc;
+        }
+        .hint-box img { max-width: 100%; border-radius: 8px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="task-container">
+        <a href="/" style="color: #666; text-decoration: none;">← Назад к списку</a>
+        
+        <div class="card">
+            <div class="task-number">Задание №{{ q.number }}</div>
+            <div class="content">{{ q.content }}</div>
+            
+            <form method="POST">
+                <input type="text" name="user_answer" placeholder="Ответ..." autocomplete="off">
+                <button type="submit" style="background: var(--accent); border: none; padding: 12px 25px; border-radius: 12px; font-weight: bold; cursor: pointer;">Отправить</button>
+            </form>
+
+            {% if q.hint %}
+                <button class="hint-btn" onclick="toggleHint()">Показать справку</button>
+                <div id="hint" class="hint-box">
+                    {{ q.hint | safe }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function toggleHint() {
+            var x = document.getElementById("hint");
+            if (x.style.display === "none" || x.style.display === "") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
