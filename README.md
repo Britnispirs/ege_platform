@@ -27,7 +27,7 @@ Security: Flask-Session для управления авторизацией, х
 Клонируй репозиторий:
 
 Bash
-git clone https://github.com/твой-логин/ege-platform.git
+git clone https://github.com/Britnispirs/ege_platform.git
 cd ege-platform
 
 Настрой окружение:
